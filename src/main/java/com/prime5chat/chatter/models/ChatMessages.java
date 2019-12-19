@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table
-public class Message {
+public class ChatMessages {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
