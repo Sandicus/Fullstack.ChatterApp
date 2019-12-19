@@ -1,0 +1,9 @@
+---
+applications:
+  - name: prime5chatter
+    memory: 2G
+    instances: 1
+    buildpack: java_buildpack
+    path: target/chatter-0.0.1-SNAPSHOT.jar
+    services:
+      - mikessql
