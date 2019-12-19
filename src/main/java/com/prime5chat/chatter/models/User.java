@@ -1,31 +1,60 @@
 package com.prime5chat.chatter.models;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table
 public class User {
+
     @Id
-    private String UserName;
-    private String password;
+    private String USER_NAME;
+
+    private String USER_PWD;
+    private String FIRST_NAME;
+    private String LAST_NAME;
+    private String EMAIL;
+
 //    @ManyToMany
 //    private List<Group> groups;
 
 
-    public String getUserName() {
-        return UserName;
+    public String getUSER_NAME() {
+        return USER_NAME;
     }
 
-    public void setUserName(String userName) {
-        UserName = userName;
+    public void setUSER_NAME(String USER_NAME) {
+        this.USER_NAME = USER_NAME;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUSER_PWD() {
+        return USER_PWD;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUSER_PWD(String password) {
+        this.USER_PWD = password;
+    }
+
+    public String getFIRST_NAME() {
+        return FIRST_NAME;
+    }
+
+    public void setFIRST_NAME(String FIRST_NAME) {
+        this.FIRST_NAME = FIRST_NAME;
+    }
+
+    public String getLAST_NAME() {
+        return LAST_NAME;
+    }
+
+    public void setLAST_NAME(String LAST_NAME) {
+        this.LAST_NAME = LAST_NAME;
+    }
+
+    public String getEMAIL() {
+        return EMAIL;
+    }
+
+    public void setEMAIL(String EMAIL) {
+        this.EMAIL = EMAIL;
     }
 }
