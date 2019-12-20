@@ -13,7 +13,7 @@ _Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick_
 <hr>
 
 ## Minimum viable features:  
-* As a client, (not logged in) I
+* As a client, I
     * can send messages to a _peer_.
 	* can view default channels
 	* can view all accessible channels
