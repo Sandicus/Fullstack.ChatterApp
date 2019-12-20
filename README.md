@@ -46,7 +46,7 @@ _Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick_
 * Returns a message a user enters in the text box and that message is saved in DB.
 
 @MessageMapping("/chat.leave")
-* Returns a messaged if user leaves the chat app. Ex: ("Valentin has left the chat")
+* Returns a message if user leaves the chat app. Ex: ("Valentin has left the chat")
 
 
 
