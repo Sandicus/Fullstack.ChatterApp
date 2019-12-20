@@ -1,9 +1,9 @@
 package com.prime5chat.chatter.repositories;
 
-import com.prime5chat.chatter.models.Channel;
+import com.prime5chat.chatter.models.ChatChannel;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GroupRepository extends CrudRepository<Channel, Long> {
+public interface GroupRepository extends CrudRepository<ChatChannel, String> {
 }

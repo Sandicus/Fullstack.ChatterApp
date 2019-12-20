@@ -1,6 +1,6 @@
 package com.prime5chat.chatter.controllers;
 
-import com.prime5chat.chatter.models.Message;
+import com.prime5chat.chatter.models.ChatMessages;
 import com.prime5chat.chatter.services.MessageServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -21,24 +21,25 @@ public class MessageController {
 
     @MessageMapping("/chat.register")
     @SendTo("/topic/public")
-    public Message register(@Payload Message message, SimpMessageHeaderAccessor headerAccessor){
-        headerAccessor.getSessionAttributes().put("username", message.getUSER_NAME());
-        return message;
+    public ChatMessages register(@Payload ChatMessages chatMessages, SimpMessageHeaderAccessor headerAccessor){
+        headerAccessor.getSessionAttributes().put("username", chatMessages.getUSER_NAME());
+        return chatMessages;
     }
 
     @MessageMapping("/chat.send")
     @SendTo("/topic/public")
-     public Message sendMessage(@Payload Message message) {
+     public ChatMessages sendMessage(@Payload ChatMessages chatMessages){
         System.out.println("SENDMESSAGE METHOD HAS BEEN CALLED");
-        System.out.println(message.getUSER_NAME());
-        System.out.println(message.getMESSAGE_TYPE());
-        System.out.println(message.getMESSAGE());
-        return message;
+        System.out.println(chatMessages.getUSER_NAME());
+        System.out.println(chatMessages.getMESSAGE_TYPE());
+        System.out.println(chatMessages.getMESSAGE());
+        messageServices.saveMessage(chatMessages);
+        return chatMessages;
     }
 
     @MessageMapping("/chat.leave")
     @SendTo("/topic/public")
-    public Message logout(@Payload Message message) {
-        return message;
+    public ChatMessages logout(@Payload ChatMessages chatMessages) {
+        return chatMessages;
     }
 }

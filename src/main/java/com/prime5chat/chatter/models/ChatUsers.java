@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class User {
+public class ChatUsers {
 
     @Id
     @JsonProperty("USER_NAME")

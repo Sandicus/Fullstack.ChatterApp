@@ -10,12 +10,12 @@ import java.util.Date;
 
 @Entity
 @Table
-public class Message {
+public class ChatMessages {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long MSG_ID;
-
+    @JsonProperty("channel_name")
     private String CHANNEL_NAME;
     @JsonProperty("sender")
     private String USER_NAME;
