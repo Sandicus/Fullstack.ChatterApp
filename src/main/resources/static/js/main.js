@@ -43,15 +43,16 @@ function onConnected() {
     stompClient.subscribe('/topic/public', onMessageReceived);
     channel = 'public';
     // Tell your username to the server
+    stompClient.send("/app/chat.createUser",
+        {},
+        JSON.stringify({USER_NAME: username, USER_PWD: password})
+    );
     stompClient.send("/app/chat.register",
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
     );
 
-    stompClient.send("/app/chat.createUser",
-        {},
-        JSON.stringify({sender: username, type: 'NOTAMESSAGE'})
-    );
+
     connectingElement.classList.add('hidden');
 }
 
@@ -61,7 +62,7 @@ function goToAccountCreation(event) {
     event.preventDefault();
 }
 
-function goToLogin(event){
+function goToLogin(event) {
     newAccountPage.classList.add('hidden');
     usernamePage.classList.remove('hidden');
     event.preventDefault();
@@ -82,11 +83,6 @@ function createAccount(event) {
         stompClient.connect({}, onConnected, onError);
     }
     event.preventDefault();
-}
-
-function onCreateAccount() {
-
-
 }
 
 
