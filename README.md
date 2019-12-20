@@ -1,4 +1,9 @@
-# Micro Web Application - Chatter
+# Micro Web Application - Prime 5 Chatter
+#### Welcome to Prime 5 messenger web service! With Prime 5, you can:
+	* Make groups
+	* Show off your interests
+	* Connect with friends
+	* Send message live to peers and groups alike!
 
 _Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick_
 
@@ -7,7 +12,7 @@ _Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick_
 
 <hr>
 
-#### User Stories to Fulfill  
+#### Minimum viable features:  
 * As a client, (not logged in) I
     * can send messages to a _peer_.
 	* can view default channels
@@ -43,10 +48,5 @@ _Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick_
 @MessageMapping("/chat.leave")
 * Returns a messaged if user leaves the chat app. Ex: ("Valentin has left the chat")
 
-## Prime 5 Messenger Application:
-#### Welcome to group 5's messenger web service! With Prime 5, you can:
-	* Make groups
-	* Show off your interests
-	* Connect with friends
 
 
