@@ -1,6 +1,6 @@
 # Micro Web Application - Chatter
 
-Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick
+_Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick_
 
 * **Objective** - To create an implementation of a small web service that allows users to message eachother along with other features such as creating group chats, ect.
 * **Purpose** - To demonstrate the construction of a full-stacked web-application and makes it possible to open a two-way interactive communication session between the user's browser and a server.
