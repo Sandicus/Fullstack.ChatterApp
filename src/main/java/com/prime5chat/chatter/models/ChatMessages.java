@@ -1,5 +1,7 @@
 package com.prime5chat.chatter.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,10 +15,13 @@ public class ChatMessages {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long MSG_ID;
-
+    @JsonProperty("channel_name")
     private String CHANNEL_NAME;
+    @JsonProperty("sender")
     private String USER_NAME;
+    @JsonProperty("content")
     private String MESSAGE;
+    @JsonProperty("type")
     private MessageType MESSAGE_TYPE;
     private String MSG_TIMESTAMP = formatDate(new Date());
 

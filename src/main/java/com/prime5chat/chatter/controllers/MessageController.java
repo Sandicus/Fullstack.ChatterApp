@@ -33,6 +33,7 @@ public class MessageController {
         System.out.println(chatMessages.getUSER_NAME());
         System.out.println(chatMessages.getMESSAGE_TYPE());
         System.out.println(chatMessages.getMESSAGE());
+        messageServices.saveMessage(chatMessages);
         return chatMessages;
     }
 

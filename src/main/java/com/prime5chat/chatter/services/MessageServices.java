@@ -12,7 +12,7 @@ public class MessageServices {
     MessageRepository messageRepository;
 
     public void saveMessage(ChatMessages chatMessages){
-        //messageRepository.save(message);
+        messageRepository.save(chatMessages);
     }
 
 }
