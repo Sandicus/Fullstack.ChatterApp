@@ -21,7 +21,7 @@ _Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick_
 ##### 2.) Run Spring application, wait until it finishes set up
 ##### 3.) On web browser go to http://localhost:8080/
 ##### 4.) A login box should appear where you can sign up
-##### 5.) Now you can message live messages real time in the chat server
+##### 5.) Now you can send messages real time in the chat server
 
 
 
@@ -44,10 +44,7 @@ _Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick_
 * Returns a messaged if user leaves the chat app. Ex: ("Valentin has left the chat")
 
 ## Prime 5 Messenger Application:
-#### Welcome to group 5's messenger web service! With Prime 5, you can use the 5 senses with:
-* Calling/ Video calling 
-* Find a resturaunt/ places between you and your friends!
-* And so much more!
+#### Welcome to group 5's messenger web service! With Prime 5, you can:
 	* Make groups
 	* Show off your interests
 	* Connect with friends
