@@ -16,14 +16,14 @@ Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick
 
 ## Running Application:
 
-#### Locally
+### Locally
 ##### 1.) Clone from dev
 ##### 2.) Run Spring application, wait until it finishes set up
 ##### 3.) On web browser go to http://localhost:8080/
 
 
 
-#### Live Demo
+### Live Demo
 * Go to https://
 
 
