@@ -7,12 +7,6 @@ Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick
 
 <hr>
 
-
-
-## Project Topic:
-
-### TCP Application
-
 #### User Stories to Fulfill  
 * As a client, (not logged in) I
     * can send messages to a _peer_.
@@ -23,9 +17,9 @@ Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick
 ## Running Application:
 
 #### Locally
-* Clone from dev
-* Run Spring application, wait until it finishes set up
-* On web browser go to http://localhost:8080/
+1.) Clone from dev
+2.) Run Spring application, wait until it finishes set up
+3.) On web browser go to http://localhost:8080/
 
 
 
