@@ -12,59 +12,70 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String content;
-    private String sender;
-    private MessageType type;
+    private Long MSG_ID;
 
-    private String timestamp = formatDate(new Date());
+    private String CHANNEL_NAME;
+    private String USER_NAME;
+    private String MESSAGE;
+    private MessageType MESSAGE_TYPE;
+    private String MSG_TIMESTAMP = formatDate(new Date());
 
-    public Long getId() {
-        return id;
+
+
+    public Long getMSG_ID() {
+        return MSG_ID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMSG_ID(Long id) {
+        this.MSG_ID = id;
     }
 
-    public String getTimestamp() {
-        return timestamp;
+    public String getMSG_TIMESTAMP() {
+        return MSG_TIMESTAMP;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setMSG_TIMESTAMP(String timestamp) {
+        this.MSG_TIMESTAMP = timestamp;
     }
 
     public enum MessageType{
         CHAT, LEAVE, JOIN, NOTAMESSAGE
     }
 
-    public String getContent() {
-        return content;
+    public String getMESSAGE() {
+        return MESSAGE;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setMESSAGE(String content) {
+        this.MESSAGE = content;
     }
 
-    public String getSender() {
-        return sender;
+    public String getUSER_NAME() {
+        return USER_NAME;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public void setUSER_NAME(String sender) {
+        this.USER_NAME = sender;
     }
 
-    public MessageType getType() {
-        return type;
+    public MessageType getMESSAGE_TYPE() {
+        return MESSAGE_TYPE;
     }
 
-    public void setType(MessageType type) {
-        this.type = type;
+    public void setMESSAGE_TYPE(MessageType type) {
+        this.MESSAGE_TYPE = type;
     }
 
     public String formatDate(Date date){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         return dateFormat.format(date);
+    }
+
+    public String getCHANNEL_NAME() {
+        return CHANNEL_NAME;
+    }
+
+    public void setCHANNEL_NAME(String CHANNEL_NAME) {
+        this.CHANNEL_NAME = CHANNEL_NAME;
     }
 }

@@ -22,7 +22,7 @@ public class MessageController {
     @MessageMapping("/chat.register")
     @SendTo("/topic/public")
     public Message register(@Payload Message message, SimpMessageHeaderAccessor headerAccessor){
-        headerAccessor.getSessionAttributes().put("username", message.getSender());
+        headerAccessor.getSessionAttributes().put("username", message.getUSER_NAME());
         return message;
     }
 
@@ -30,9 +30,9 @@ public class MessageController {
     @SendTo("/topic/public")
      public Message sendMessage(@Payload Message message){
         System.out.println("SENDMESSAGE METHOD HAS BEEN CALLED");
-        System.out.println(message.getSender());
-        System.out.println(message.getType());
-        System.out.println(message.getContent());
+        System.out.println(message.getUSER_NAME());
+        System.out.println(message.getMESSAGE_TYPE());
+        System.out.println(message.getMESSAGE());
         return message;
     }
 

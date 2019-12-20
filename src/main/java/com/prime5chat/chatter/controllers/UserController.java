@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +26,8 @@ public class UserController {
     @MessageMapping("/chat.createUser")
     public Message createUser(@Payload Message message) {
         System.out.println("-----------------------------------");
-        System.out.println(message.getSender());
-        System.out.println(message.getType());
+        System.out.println(message.getUSER_NAME());
+        System.out.println(message.getMESSAGE_TYPE());
         System.out.println("-----------------------------------");
         return message;
     }
