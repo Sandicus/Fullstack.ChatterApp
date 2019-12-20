@@ -7,12 +7,12 @@ import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity
-public class Channel {
+public class ChatChannel {
     @Id
     @GeneratedValue
     private Long id;
-
-    @ManyToMany
-    private List<User> allowedUsers;
+//
+//    @ManyToMany
+//    private List<User> allowedUsers;
 
 }

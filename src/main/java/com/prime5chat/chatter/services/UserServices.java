@@ -1,12 +1,10 @@
 package com.prime5chat.chatter.services;
 
 
-import com.prime5chat.chatter.models.User;
+import com.prime5chat.chatter.models.ChatUsers;
 import com.prime5chat.chatter.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserServices {
@@ -18,11 +16,11 @@ public class UserServices {
         this.userRepository = userRepository;
     }
 
-    public User createUser(User user) {
+    public ChatUsers createUser(ChatUsers user) {
         return this.userRepository.save(user);
     }
 
-    public Iterable<User> getUsers() {
+    public Iterable<ChatUsers> getUsers() {
         return this.userRepository.findAll();
     }
 }

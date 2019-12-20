@@ -13,6 +13,7 @@ var sideBar = document.querySelector('#sidebar');
 var stompClient = null;
 var username = null;
 var password = null;
+var channel = null;
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -40,6 +41,7 @@ function connect(event) {
 function onConnected() {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
+    channel = 'public';
     // Tell your username to the server
     stompClient.send("/app/chat.register",
         {},
@@ -101,7 +103,8 @@ function send(event) {
         var chatMessage = {
             sender: username,
             content: messageInput.value,
-            type: 'CHAT'
+            type: 'CHAT',
+            channel_name: channel
         };
 
         stompClient.send("/app/chat.send", {}, JSON.stringify(chatMessage));

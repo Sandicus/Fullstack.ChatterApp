@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class User {
+public class ChatUsers {
 
     @Id
     private String USER_NAME;

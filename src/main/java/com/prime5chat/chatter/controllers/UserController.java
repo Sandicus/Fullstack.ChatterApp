@@ -1,7 +1,7 @@
 package com.prime5chat.chatter.controllers;
 
-import com.prime5chat.chatter.models.Message;
-import com.prime5chat.chatter.models.User;
+import com.prime5chat.chatter.models.ChatMessages;
+import com.prime5chat.chatter.models.ChatUsers;
 import com.prime5chat.chatter.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,21 +24,21 @@ public class UserController {
     }
 
     @MessageMapping("/chat.createUser")
-    public Message createUser(@Payload Message message) {
+    public ChatMessages createUser(@Payload ChatMessages chatMessages) {
         System.out.println("-----------------------------------");
-        System.out.println(message.getUSER_NAME());
-        System.out.println(message.getMESSAGE_TYPE());
+        System.out.println(chatMessages.getUSER_NAME());
+        System.out.println(chatMessages.getMESSAGE_TYPE());
         System.out.println("-----------------------------------");
-        return message;
+        return chatMessages;
     }
 
     @PostMapping(path = "/users")
-    public ResponseEntity<?> createUser(@RequestBody User user){
+    public ResponseEntity<?> createUser(@RequestBody ChatUsers user){
         return new ResponseEntity<>(this.userServices.createUser(user), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/users")
-    public ResponseEntity<Iterable<User>> getUsers(){
+    public ResponseEntity<Iterable<ChatUsers>> getUsers(){
         return new ResponseEntity<>(this.userServices.getUsers(), HttpStatus.OK);
     }
 
