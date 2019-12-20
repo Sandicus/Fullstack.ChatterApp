@@ -26,7 +26,8 @@ _Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick_
 ### Live Demo
 * Go to https://
 
-##Authentication Endpoints:
+## Authentication Endpoints:
+
 
 
 
