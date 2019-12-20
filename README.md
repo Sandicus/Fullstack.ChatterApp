@@ -26,8 +26,21 @@ _Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick_
 ### Live Demo
 * Go to https://
 
+##Authentication Endpoints:
 
-## Prime 5 Messenger Application
+
+
+## Message Endpoints:
+@MessageMapping("/chat.register")
+* Returns a message if a user joins the chat app. Ex: ("Sandy has joined!")
+
+@MessageMapping("/chat.send")
+* Returns a message a user enters in the text box and that message is saved in DB.
+
+@MessageMapping("/chat.leave")
+* Returns a messaged if user leaves the chat app. Ex: ("Valentin has left the chat")
+
+## Prime 5 Messenger Application:
 #### Welcome to group 5's messenger web service! With Prime 5, you can use the 5 senses with:
 * Calling/ Video calling 
 * Find a resturaunt/ places between you and your friends!
