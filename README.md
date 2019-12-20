@@ -20,6 +20,8 @@ _Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick_
 ##### 1.) Clone from dev
 ##### 2.) Run Spring application, wait until it finishes set up
 ##### 3.) On web browser go to http://localhost:8080/
+##### 4.) A login box should appear where you can sign up
+##### 5.) Now you can message live messages real time in the chat server
 
 
 
