@@ -7,7 +7,7 @@ import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity
-public class Group {
+public class Channel {
     @Id
     @GeneratedValue
     private Long id;
