@@ -3,7 +3,7 @@
 	* Make groups
 	* Show off your interests
 	* Connect with friends
-	* Send message live to peers and groups alike!
+	* Send and recieve live messages to peers and groups alike!
 
 _Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick_
 
