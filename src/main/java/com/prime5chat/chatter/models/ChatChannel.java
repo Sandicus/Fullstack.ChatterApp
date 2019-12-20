@@ -7,7 +7,7 @@ import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity
-public class Channel {
+public class ChatChannel {
 
     @Id
     private String CHANNEL_NAME;
