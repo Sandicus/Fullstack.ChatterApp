@@ -1,5 +1,7 @@
 package com.prime5chat.chatter.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,6 +9,7 @@ import javax.persistence.*;
 public class User {
 
     @Id
+    @JsonProperty("USER_NAME")
     private String USER_NAME;
 
     private String USER_PWD;
