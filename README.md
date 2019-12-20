@@ -1,5 +1,5 @@
 # Micro Web Application - Chatter
-* **Objective** - To create an implementation of a small web service and allows users to message eachother along with other features such as creating group chats, ect.
+* **Objective** - To create an implementation of a small web service that allows users to message eachother along with other features such as creating group chats, ect.
 * **Purpose** - to demonstrate the construction of a full-stacked web-application and 
 
 <hr>
