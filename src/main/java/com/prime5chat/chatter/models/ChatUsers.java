@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "chatusers")
 public class ChatUsers {
 
     @Id
-    @JsonProperty("USER_NAME")
+    @Column(columnDefinition = "VARCHAR(60)")
     private String USER_NAME;
 
     private String USER_PWD;
