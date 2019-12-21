@@ -1,15 +1,14 @@
 package com.prime5chat.chatter.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "chatchannel")
 public class ChatChannel {
 
     @Id
+    @Column(columnDefinition = "VARCHAR(60)")
     private String CHANNEL_NAME;
 
 //    @ManyToMany

@@ -9,7 +9,7 @@ import java.util.Date;
 
 
 @Entity
-@Table
+@Table(name = "chatmessages")
 public class ChatMessages {
 
     @Id
