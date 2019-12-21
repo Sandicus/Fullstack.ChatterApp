@@ -1,13 +1,13 @@
 package com.prime5chat.chatter.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "userprofile")
 public class UserProfile {
 
     @Id
+    @Column(columnDefinition = "VARCHAR(60)")
     private String USER_NAME;
     private String STATE;
     private String BIO;

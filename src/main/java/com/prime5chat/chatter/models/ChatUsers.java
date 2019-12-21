@@ -3,10 +3,11 @@ package com.prime5chat.chatter.models;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "chatusers")
 public class ChatUsers {
 
     @Id
+    @Column(columnDefinition = "VARCHAR(60)")
     private String USER_NAME;
 
     private String USER_PWD;
