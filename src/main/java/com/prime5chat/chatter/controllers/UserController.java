@@ -33,7 +33,6 @@ public class UserController {
     }
 
     @PostMapping(path = "/users")
-
     public ResponseEntity<?> createUser(@RequestBody ChatUsers user){
         return new ResponseEntity<>(this.userServices.createUser(user), HttpStatus.CREATED);
     }
