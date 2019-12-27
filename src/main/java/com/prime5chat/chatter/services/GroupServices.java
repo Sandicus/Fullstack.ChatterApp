@@ -33,10 +33,10 @@ public class GroupServices {
         }
     }
 
-    public void subscribeUser(ChatUsers user, ChatChannel channel) {
+    public void subscribeUser(ChatUsers user, ChatChannel channel, Integer type) {
         //create new UsersChannels instance and add to both user and channel
         UsersChannels addThis = new UsersChannels();
-        addThis.setUSER_TYPE(1);
+        addThis.setUSER_TYPE(type);
         addThis.setChatUser(user);
         addThis.setChatChannel(channel);
 
