@@ -62,4 +62,12 @@ public class ChatUsers {
     public void setEMAIL(String EMAIL) {
         this.EMAIL = EMAIL;
     }
+
+    public Set<UsersChannels> getUsersChannels() {
+        return usersChannels;
+    }
+
+    public void setUsersChannels(Set<UsersChannels> usersChannels) {
+        this.usersChannels = usersChannels;
+    }
 }

@@ -2,11 +2,13 @@ package com.prime5chat.chatter.services;
 
 import com.prime5chat.chatter.models.ChatChannel;
 import com.prime5chat.chatter.models.ChatUsers;
+import com.prime5chat.chatter.models.UsersChannels;
 import com.prime5chat.chatter.repositories.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 @Service
 public class GroupServices {
@@ -23,21 +25,34 @@ public class GroupServices {
     }
 
     public void updateChannel(String name, ChatChannel newChannel) {
-        ChatChannel oldChannel = this.groupRepository.findById(name).get();
-        oldChannel.setPublicChannel(newChannel.getPublicChannel());
-        oldChannel.setUsersChannels(newChannel.getUsersChannels());
-
-        this.groupRepository.save(oldChannel);
+        if(this.groupRepository.findById(name).isPresent()) {
+            ChatChannel oldChannel = this.groupRepository.findById(name).get();
+            oldChannel.setPublicChannel(newChannel.getPublicChannel());
+            oldChannel.setUsersChannels(newChannel.getUsersChannels());
+            this.groupRepository.save(oldChannel);
+        }
     }
 
     public void subscribeUser(ChatUsers user, ChatChannel channel) {
         //create new UsersChannels instance and add to both user and channel
+        UsersChannels addThis = new UsersChannels();
+        addThis.setUSER_TYPE(1);
+        addThis.setChatUser(user);
+        addThis.setChatChannel(channel);
+
+        Set<UsersChannels> channels = user.getUsersChannels();
+        channels.add(addThis);
+        user.setUsersChannels(channels);
+
+        Set<UsersChannels> channels1 = channel.getUsersChannels();
+        channels1.add(addThis);
+        channel.setUsersChannels(channels1);
     }
 
-
-
     public void deleteChannel(String name) {
-        this.groupRepository.delete(this.groupRepository.findById(name).get());
+        if(this.groupRepository.findById(name).isPresent()) {
+            this.groupRepository.delete(this.groupRepository.findById(name).get());
+        }
     }
 
     public ArrayList<ChatChannel> getPublicChannels() {
