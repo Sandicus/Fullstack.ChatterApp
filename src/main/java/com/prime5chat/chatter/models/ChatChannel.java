@@ -2,6 +2,7 @@ package com.prime5chat.chatter.models;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 //@Table(name = "chatchannel")
@@ -13,8 +14,10 @@ public class ChatChannel {
 
     private Boolean publicChannel;
 
-//    @ManyToMany
-//    private List<User> allowedUsers;
+    @OneToMany(mappedBy = "chatChannel")
+    private Set<UsersChannels> usersChannels;
+
+
 
     public String getCHANNEL_NAME() {
         return CHANNEL_NAME;
@@ -30,5 +33,13 @@ public class ChatChannel {
 
     public void setPublicChannel(Boolean publicChannel) {
         this.publicChannel = publicChannel;
+    }
+
+    public Set<UsersChannels> getUsersChannels() {
+        return usersChannels;
+    }
+
+    public void setUsersChannels(Set<UsersChannels> usersChannels) {
+        this.usersChannels = usersChannels;
     }
 }
