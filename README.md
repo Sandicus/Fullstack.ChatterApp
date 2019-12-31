@@ -1,35 +1,19 @@
-# Micro Web Application - Server
-* **Objective** - to create an implementation of a small web service
-* **Purpose** - to demonstrate the construction of a full-stacked web-application
+# Micro Web Application - Prime 5 Chatter
+#### Welcome to Prime 5 messenger web service! With Prime 5, you can:
+	* Make groups
+	* Show off your interests
+	* Connect with friends
+	* Send and recieve live messages to peers and groups alike!
 
-## Developmental Notes
-### Minimum Tech Stack
-* **Wireframe** - Mockflow
-* **Frontend** - Angular / React
-* **Business Logic** - Java
-* **Data Layer** - MySQL
-* **Cloud** - Heroku
+_Designed by: Valentin Gheorghe, Mike Gray, Sandy Pham, Kwame L Warrick_
 
-### Installation
-* Install [NodeJs](https://nodejs.org/en/). From terminal execute
-    * `brew install node`
-* Install [Angular](http://angular.io/). From terminal execute
-    * `brew install angular-cli`
-* Install [AngularCli](). From terminal execute
-    * `npm install -g @angular/cli`
-* Install [Heroku](). From terminal execute
-	* `brew tap heroku/brew && brew install heroku`
+* **Objective** - To create an implementation of a small web service that allows users to message eachother along with other features such as creating group chats, ect.
+* **Purpose** - To demonstrate the construction of a full-stacked web-application and makes it possible to open a two-way interactive communication session between the user's browser and a server.
 
 <hr>
 
-
-
-## Project Topic:
-
-### TCP Application
-
-#### User Stories to Fulfill  
-* As a client, (not logged in) I
+## Minimum viable features:  
+* As a client, I
     * can send messages to a _peer_.
 	* can view default channels
 	* can view all accessible channels
@@ -37,24 +21,32 @@
 
 ## Running Application:
 
-#### Locally
-* Clone from dev
-* Run Spring application, wait until it finishes set up
-* On web browser go to http://localhost:8080/
+### Locally
+##### 1.) Clone from dev
+##### 2.) Run Spring application, wait until it finishes set up
+##### 3.) On web browser go to http://localhost:8080/
+##### 4.) A login box should appear where you can sign up
+##### 5.) Now you can send messages real time in the chat server
 
 
 
-#### Live Demo
+### Live Demo
 * Go to https://
 
+## Authentication Endpoints:
 
-## Prime 5 Messenger Application
-#### Welcome to group 5's messenger web service! With Prime 5, you can use the 5 senses with:
-* Calling/ Video calling 
-* Find a resturaunt/ places between you and your friends!
-* And so much more!
-	* Make groups
-	* Show off your interests
-	* Connect with friends
+
+
+
+## Message Endpoints:
+@MessageMapping("/chat.register")
+* Returns a message if a user joins the chat app. Ex: ("Sandy has joined!")
+
+@MessageMapping("/chat.send")
+* Returns a message a user enters in the text box and that message is saved in DB.
+
+@MessageMapping("/chat.leave")
+* Returns a message if user leaves the chat app. Ex: ("Valentin has left the chat")
+
 
 

@@ -1,53 +1,25 @@
 package com.prime5chat.chatter.models;
 
-import javax.persistence.*;
-import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity
 public class ChatChannel {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String CHANNEL_NAME;
 
-    private Long id;
+//    @ManyToMany
+//    private List<User> allowedUsers;
 
-
-    private String channelName;
-
-
-
-    @ManyToMany
-    private List<ChatUsers> users = new ArrayList<>();
-    private boolean isPrivate;
-
-    public ChatChannel(){}
-    public ChatChannel(String channelName){
-        this.channelName = channelName;
+    public String getCHANNEL_NAME() {
+        return CHANNEL_NAME;
     }
 
-    public Long getId() {
-        return id;
-    }
-    public void setID(Long id){
-            this.id = id;
-    }
-    public String getChannelName(){
-        return channelName;
-    }
-    public void setChannelName(String channelName){
-        this.channelName = channelName;
-    }
-    public boolean isPrivate(){
-        return isPrivate;
-    }
-    public void setPrivate(boolean aPrivate){
-        this.isPrivate = aPrivate;
-    }
-    public List<ChatUsers> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<ChatUsers> users) {
-        this.users = users;
+    public void setCHANNEL_NAME(String CHANNEL_NAME) {
+        this.CHANNEL_NAME = CHANNEL_NAME;
     }
 }
