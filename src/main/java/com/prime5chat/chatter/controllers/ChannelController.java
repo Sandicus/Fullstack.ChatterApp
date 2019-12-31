@@ -7,3 +7,4 @@ public class ChannelController {
     private ChatChannel defaultChannel;
 
 }
+
