@@ -63,10 +63,10 @@ public class GroupServices {
         return results;
     }
 
-    public ArrayList<ChatChannel> getUsersChannels() {
+    public ArrayList<ChatChannel> getSubscribedChannels(ChatUsers user) {
         ArrayList<ChatChannel> results = new ArrayList<>();
-        for(ChatChannel c : this.groupRepository.findAll()) {
-
+        for(UsersChannels uc : user.getUsersChannels()) {
+            results.add(uc.getChatChannel());
         }
         return results;
     }
