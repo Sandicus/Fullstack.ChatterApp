@@ -8,6 +8,8 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class GroupController {
 
@@ -19,12 +21,13 @@ public class GroupController {
     }
 
 
-    @GetMapping
-    public void getAllChannels(){
+//    public void createChannel(ChatChannel chatChannel) {
+//        this.groupServices.createChannel(chatChannel);
+//    }
 
-    }
-
-    public void createChannel(ChatChannel chatChannel) {
-        this.groupServices.createChannel(chatChannel);
-    }
+//    @MessageMapping("/chat.publicchannels")
+//    @SendTo("/topic/public")
+//    public List<ChatChannel> getPublicChannels() {
+//        return groupServices.getPublicChannels();
+//    }
 }

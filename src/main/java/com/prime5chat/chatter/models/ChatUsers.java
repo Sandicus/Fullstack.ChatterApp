@@ -2,7 +2,6 @@ package com.prime5chat.chatter.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
 import java.util.Set;
 

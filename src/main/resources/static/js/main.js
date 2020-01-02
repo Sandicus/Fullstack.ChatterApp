@@ -9,6 +9,7 @@ var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 var sideBar = document.querySelector('#sidebar');
+var channelList = document.querySelector("#channellist");
 
 var stompClient = null;
 var username = null;
@@ -85,7 +86,6 @@ function createAccount(event) {
     event.preventDefault();
 }
 
-
 function onError(error) {
     connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
     connectingElement.style.color = 'red';
@@ -154,6 +154,23 @@ function onMessageReceived(payload) {
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
+}
+
+function getPublicChannels(payload) {
+    var channelArray = JSON.parse(payload.body);
+    for(var i = 0; i < channelArray.length; i++) {
+        var nextChannel = channelArray[i];
+        var channelElement = document.createElement('li');
+        var linkElement = document.createElement('button');
+        linkElement.innerHTML = nextChannel.channel_name + "(Public)";
+        linkElement.onclick = goToChannel(nextChannel);
+        channelElement.appendChild(linkElement);
+        channelList.appendChild(channelElement);
+    }
+}
+
+function goToChannel(payload) {
+
 }
 
 

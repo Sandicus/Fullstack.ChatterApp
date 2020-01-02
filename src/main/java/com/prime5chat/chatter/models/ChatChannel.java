@@ -1,15 +1,18 @@
 package com.prime5chat.chatter.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
 @Entity
-//@Table(name = "chatchannel")
+@Table(name = "chatchannel")
 public class ChatChannel {
 
     @Id
     @Column(columnDefinition = "VARCHAR(60)")
+    @JsonProperty("channel_name")
     private String CHANNEL_NAME;
 
     private Boolean publicChannel;

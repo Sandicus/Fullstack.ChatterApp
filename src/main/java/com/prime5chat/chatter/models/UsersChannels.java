@@ -1,8 +1,5 @@
 package com.prime5chat.chatter.models;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.bind.DefaultValue;
-
 import javax.persistence.*;
 
 @Entity
