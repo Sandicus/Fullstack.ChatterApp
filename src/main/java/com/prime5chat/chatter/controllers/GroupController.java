@@ -21,13 +21,13 @@ public class GroupController {
     }
 
 
-//    public void createChannel(ChatChannel chatChannel) {
-//        this.groupServices.createChannel(chatChannel);
-//    }
+    public void createChannel(ChatChannel chatChannel) {
+        this.groupServices.createChannel(chatChannel);
+    }
 
-//    @MessageMapping("/chat.publicchannels")
-//    @SendTo("/topic/public")
-//    public List<ChatChannel> getPublicChannels() {
-//        return groupServices.getPublicChannels();
-//    }
+    @MessageMapping("/chat.publicchannels")
+    @SendTo("/topic/public")
+    public List<ChatChannel> getPublicChannels() {
+        return groupServices.getPublicChannels();
+    }
 }
