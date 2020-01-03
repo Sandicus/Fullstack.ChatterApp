@@ -1,13 +1,14 @@
 package com.prime5chat.chatter.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "chatchannel")
+@Table(name = "chat_channel")
 public class ChatChannel {
 
     @Id
@@ -15,11 +16,12 @@ public class ChatChannel {
     @JsonProperty("channel_name")
     private String CHANNEL_NAME;
 
+    @JsonProperty("public_channel")
     private Boolean publicChannel;
 
     @OneToMany(mappedBy = "chatChannel")
+    @JsonIgnore
     private Set<UsersChannels> usersChannels;
-
 
 
     public String getCHANNEL_NAME() {

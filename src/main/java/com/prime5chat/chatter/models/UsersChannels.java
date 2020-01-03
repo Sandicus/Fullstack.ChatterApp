@@ -3,7 +3,7 @@ package com.prime5chat.chatter.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "userschannels")
+@Table(name = "users_channels")
 public class UsersChannels {
 
     @Id

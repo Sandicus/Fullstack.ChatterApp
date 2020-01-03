@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-@Table(name = "chatmessages")
+@Table(name = "chat_messages")
 public class ChatMessages {
 
     @Id

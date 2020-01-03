@@ -9,7 +9,7 @@ var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 var sideBar = document.querySelector('#sidebar');
-var channelList = document.querySelector("#channellist");
+var channelArea = document.querySelector("#channellist");
 
 var stompClient = null;
 var username = null;
@@ -42,6 +42,7 @@ function connect(event) {
 function onConnected() {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
+    stompClient.subscribe('/interface/channels', getPublicChannels);
     channel = 'public';
     // Tell your username to the server
     stompClient.send("/app/chat.createUser",
@@ -53,8 +54,8 @@ function onConnected() {
         JSON.stringify({sender: username, type: 'JOIN'})
     );
 
-
     connectingElement.classList.add('hidden');
+    stompClient.send("/app/chat.publicchannels");
 }
 
 function goToAccountCreation(event) {
@@ -157,22 +158,24 @@ function onMessageReceived(payload) {
 }
 
 function getPublicChannels(payload) {
+
     var channelArray = JSON.parse(payload.body);
+
     for(var i = 0; i < channelArray.length; i++) {
-        var nextChannel = channelArray[i];
+        var channel = channelArray[i];
         var channelElement = document.createElement('li');
         var linkElement = document.createElement('button');
-        linkElement.innerHTML = nextChannel.channel_name + "(Public)";
-        linkElement.onclick = goToChannel(nextChannel);
+        linkElement.innerHTML = channel.channel_name;
+        linkElement.onclick = goToChannel(channelArray[i]);
         channelElement.appendChild(linkElement);
-        channelList.appendChild(channelElement);
+        channelArea.appendChild(channelElement);
+        channelArea.scrollTop = channelArea.scrollHeight;
     }
 }
 
 function goToChannel(payload) {
 
 }
-
 
 function getAvatarColor(messageSender) {
     var hash = 0;

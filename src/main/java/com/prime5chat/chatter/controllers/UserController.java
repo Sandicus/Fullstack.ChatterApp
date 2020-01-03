@@ -25,10 +25,6 @@ public class UserController {
 
     @MessageMapping("/chat.createUser")
     public ChatMessages createUser(@Payload ChatMessages chatMessages) {
-        System.out.println("-----------------------------------");
-        System.out.println(chatMessages.getUSER_NAME());
-        System.out.println(chatMessages.getMESSAGE_TYPE());
-        System.out.println("-----------------------------------");
         return chatMessages;
     }
 

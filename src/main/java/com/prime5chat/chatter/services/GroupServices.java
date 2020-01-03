@@ -58,7 +58,9 @@ public class GroupServices {
     public ArrayList<ChatChannel> getPublicChannels() {
         ArrayList<ChatChannel> results = new ArrayList<>();
         for(ChatChannel c : this.groupRepository.findAll()) {
-            if(c.getPublicChannel()) results.add(c);
+            if(c.getPublicChannel()) {
+                results.add(c);
+            }
         }
         return results;
     }
