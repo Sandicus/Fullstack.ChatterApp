@@ -29,24 +29,16 @@ CREATE TABLE IF NOT EXISTS ChatChannel(
 2 - MODERATOR
 3 - ADMIN
 */
-
-CREATE TABLE IF NOT EXISTS UsersChannels(
-    ID BIGINT (11) NOT NULL AUTO_INCREMENT,
-    CHANNEL_NAME VARCHAR (255) NOT NULL,
-    USER_NAME VARCHAR (255) NOT NULL,
-    USER_TYPE BIGINT (11) NOT NULL DEFAULT 1,
-    PRIMARY KEY (ID)
+CREATE TABLE IF NOT EXISTS chat_channel(
+    channel_name VARCHAR (255) NOT NULL,
+    public_channel BOOLEAN,
+    PRIMARY KEY (channel_name (255))
 );
 
-CREATE TABLE IF NOT EXISTS ChatMessages(
-    MSG_ID BIGINT (11) NOT NULL AUTO_INCREMENT,
-    CHANNEL_NAME VARCHAR (255) NULL,
-    USER_NAME VARCHAR (255) NULL,
-    MSG_TIMESTAMP TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    MESSAGE VARCHAR (255) NOT NULL,
-    MESSAGE_TYPE VARCHAR (50) NULL,
-    PRIMARY KEY (MSG_ID)
-);
+INSERT INTO chat_channel (channel_name, public_channel) VALUES ('Public Channel 1', TRUE);
+INSERT INTO chat_channel (channel_name, public_channel) VALUES ('Public Channel 2', TRUE);
+INSERT INTO chat_channel (channel_name, public_channel) VALUES ('Public Channel 3', TRUE);
+
 
 
 /*

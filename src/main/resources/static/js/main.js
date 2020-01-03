@@ -174,7 +174,8 @@ function getPublicChannels(payload) {
 }
 
 function goToChannel(payload) {
-
+    var newChannel = JSON.parse(payload.body);
+    channel = newChannel.channel_name;
 }
 
 function getAvatarColor(messageSender) {
