@@ -9,6 +9,7 @@ var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 var sideBar = document.querySelector('#sidebar');
+var channelArea = document.querySelector("#channellist");
 
 var stompClient = null;
 var username = null;
@@ -41,18 +42,20 @@ function connect(event) {
 function onConnected() {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
+    stompClient.subscribe('/interface/channels', getPublicChannels);
     channel = 'public';
     // Tell your username to the server
+    stompClient.send("/app/chat.createUser",
+        {},
+        JSON.stringify({USER_NAME: username, USER_PWD: password})
+    );
     stompClient.send("/app/chat.register",
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
     );
 
-    stompClient.send("/app/chat.createUser",
-        {},
-        JSON.stringify({sender: username, type: 'NOTAMESSAGE'})
-    );
     connectingElement.classList.add('hidden');
+    stompClient.send("/app/chat.publicchannels");
 }
 
 function goToAccountCreation(event) {
@@ -61,7 +64,7 @@ function goToAccountCreation(event) {
     event.preventDefault();
 }
 
-function goToLogin(event){
+function goToLogin(event) {
     newAccountPage.classList.add('hidden');
     usernamePage.classList.remove('hidden');
     event.preventDefault();
@@ -83,12 +86,6 @@ function createAccount(event) {
     }
     event.preventDefault();
 }
-
-function onCreateAccount() {
-
-
-}
-
 
 function onError(error) {
     connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
@@ -160,6 +157,25 @@ function onMessageReceived(payload) {
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
+function getPublicChannels(payload) {
+
+    var channelArray = JSON.parse(payload.body);
+
+    for(var i = 0; i < channelArray.length; i++) {
+        var channel = channelArray[i];
+        var channelElement = document.createElement('li');
+        var linkElement = document.createElement('button');
+        linkElement.innerHTML = channel.channel_name;
+        linkElement.onclick = goToChannel(channelArray[i]);
+        channelElement.appendChild(linkElement);
+        channelArea.appendChild(channelElement);
+        channelArea.scrollTop = channelArea.scrollHeight;
+    }
+}
+
+function goToChannel(payload) {
+
+}
 
 function getAvatarColor(messageSender) {
     var hash = 0;
