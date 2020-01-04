@@ -1,5 +1,6 @@
 package com.prime5chat.chatter.controllers;
 
+import com.prime5chat.chatter.models.ChatChannel;
 import com.prime5chat.chatter.models.ChatMessages;
 import com.prime5chat.chatter.services.MessageServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
+
+import java.util.List;
 
 @Controller
 public class MessageController {
@@ -37,5 +40,11 @@ public class MessageController {
     @SendTo("/topic/public")
     public ChatMessages logout(@Payload ChatMessages chatMessages) {
         return chatMessages;
+    }
+
+    @MessageMapping("/chat.getMessages")
+    @SendTo("/format/getMessages")
+    public List<ChatMessages> ChatMessages(@Payload ChatChannel channel){
+        return messageServices.getMessagesByChannel(channel.getCHANNEL_NAME());
     }
 }

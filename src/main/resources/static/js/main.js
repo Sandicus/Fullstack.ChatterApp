@@ -15,6 +15,7 @@ var stompClient = null;
 var username = null;
 var password = null;
 var channel = null;
+var channelMessages = null;
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -42,7 +43,7 @@ function connect(event) {
 function onConnected() {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
-    stompClient.subscribe('/interface/channels', getPublicChannels);
+    stompClient.subscribe('/format/channels', getPublicChannels);
     channel = 'public';
     // Tell your username to the server
     stompClient.send("/app/chat.createUser",
@@ -176,6 +177,15 @@ function getPublicChannels(payload) {
 function goToChannel(payload) {
     var newChannel = JSON.parse(payload.body);
     channel = newChannel.channel_name;
+    while(messageArea.firstChild) {
+        messageArea.removeChild(messageArea.firstChild);
+    }
+    stompClient.subscribe("/format/getMessages", getChannelMessages);
+    stompClient.send("/app/chat.getMessages", {}, JSON.stringify(payload));
+}
+
+function getChannelMessages(payload) {
+    
 }
 
 function getAvatarColor(messageSender) {
