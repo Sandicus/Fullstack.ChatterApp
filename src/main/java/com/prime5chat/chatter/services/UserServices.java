@@ -19,7 +19,7 @@ public class UserServices {
     private UserRepository userRepository;
 
     @Autowired
-    private ChannelServices channelService;
+    private GroupServices groupService;
 
 
     @Autowired
@@ -35,8 +35,8 @@ public class UserServices {
         return this.userRepository.findAll();
     }
 
-    public List<ChatUsers> findAllByChannel(Long id, Pageable pageable) {
-        return userRepository.findAllByChannels(channelService.findById(id), pageable);
+    public List<ChatUsers> findAllByChannel(String channelName, Pageable pageable) {
+        return userRepository.findAllByChannels(groupService.findById(channelName), pageable);
     }
 
     public ChatUsers findByUsername(String username) {

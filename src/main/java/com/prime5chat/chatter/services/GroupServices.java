@@ -72,4 +72,9 @@ public class GroupServices {
         }
         return results;
     }
+
+    public ChatChannel findById(String id){
+        return groupRepository.getOne(id);
+    }
+
 }

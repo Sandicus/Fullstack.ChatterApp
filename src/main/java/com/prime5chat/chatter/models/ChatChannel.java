@@ -20,6 +20,11 @@ public class ChatChannel {
     @JsonProperty("public_channel")
     private Boolean publicChannel;
 
+
+
+    private Boolean isDefault;
+    private Boolean isPrivate;
+
     @OneToMany(mappedBy = "chatChannel")
     @JsonIgnore
     private Set<UsersChannels> usersChannels;
@@ -53,4 +58,8 @@ public class ChatChannel {
     public void setUsersChannels(Set<UsersChannels> usersChannels) {
         this.usersChannels = usersChannels;
     }
+
+    public Boolean getDefault() { return isDefault; }
+
+    public void setDefault(Boolean aDefault) { isDefault = aDefault; }
 }
