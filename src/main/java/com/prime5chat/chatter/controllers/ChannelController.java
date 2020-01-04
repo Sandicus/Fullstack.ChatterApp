@@ -18,13 +18,13 @@ public class ChannelController {
 
     @Autowired
     private UserServices userService;
-
+    @Autowired
     private ChannelServices channelService;
 
 
     private ChatChannel defaultChannel;
-}
-/*
+
+
     public ChannelController(ChannelServices channelService) {
         this.channelService = channelService;
     }

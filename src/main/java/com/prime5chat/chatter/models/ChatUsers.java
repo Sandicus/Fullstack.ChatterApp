@@ -8,7 +8,8 @@ public class ChatUsers {
 
     @Id
     @Column(columnDefinition = "VARCHAR(60)")
-    private String USER_NAME;
+    private String username;
+    private String channels;
 
     private String USER_PWD;
     private String FIRST_NAME;
@@ -20,11 +21,11 @@ public class ChatUsers {
 
 
     public String getUSER_NAME() {
-        return USER_NAME;
+        return username;
     }
 
     public void setUSER_NAME(String USER_NAME) {
-        this.USER_NAME = USER_NAME;
+        this.username = USER_NAME;
     }
 
     public String getUSER_PWD() {

@@ -1,18 +1,18 @@
 package com.prime5chat.chatter.services;
 
 import com.prime5chat.chatter.models.ChatChannel;
+import com.prime5chat.chatter.models.ChatUsers;
 import com.prime5chat.chatter.repositories.ChannelRepository;
-import org.apache.tomcat.jni.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChannelServices {
+
 
     @Service
-    public class ChannelService {
+    public class ChannelServices {
 
         @Autowired
         private ChannelRepository channelRepository;
@@ -39,7 +39,7 @@ public class ChannelServices {
             return channelRepository.findByIsPrivate(isPrivate);
         }
 
-        /*public Iterable<ChatChannel> findAllPMsOfAUser(User user) {
+        public Iterable<ChatChannel> findAllPMsOfAUser(ChatUsers user) {
             List<ChatChannel> privateChannels = new ArrayList<>();
             for (ChatChannel c : findByIsPrivate(true)) {
                 if (userService.findAllByChannel(c.getId(), null).contains(user)) {
@@ -48,7 +48,7 @@ public class ChannelServices {
             }
             return privateChannels;
         }
-*/
+
         public Boolean delete(Long id){
             channelRepository.deleteById(id);
             return true;
@@ -65,4 +65,4 @@ public class ChannelServices {
             return true;
         }
     }
-}
+

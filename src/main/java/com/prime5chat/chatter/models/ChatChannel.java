@@ -1,27 +1,38 @@
 package com.prime5chat.chatter.models;
 
-import org.apache.tomcat.jni.User;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class ChatChannel {
 
     @Id
-    private String CHANNEL_NAME;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private String channelName;
+    private Long id;
+    private boolean isPrivate;
 
-    //@ManyToMany
-    //private List<User> allowedUsers;
+    public ChatChannel() {
+    }
+    public ChatChannel(String channelName, Long id) {
+        this.channelName = channelName;
+        this.id = id;
+    }
+
+//    @OneToMany
+//    List<UserServices> allowedUsers;
+
+    public boolean isPrivate(){return true;}
 
     public String getCHANNELNAME() {
-        return CHANNEL_NAME;
+        return channelName;
     }
 
-    public void setCHANNEL_NAME(String CHANNEL_NAME) {
-        this.CHANNEL_NAME = CHANNEL_NAME;
+    public void setCHANNEL_NAME(String channelName) {
+        this.channelName = channelName;
     }
 
 
-
+    public  Long  getId() {
+        return id;
+    }
 }

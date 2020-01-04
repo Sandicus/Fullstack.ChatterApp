@@ -2,14 +2,25 @@ package com.prime5chat.chatter.services;
 
 
 import com.prime5chat.chatter.models.ChatUsers;
+import com.prime5chat.chatter.models.UserChannel;
 import com.prime5chat.chatter.repositories.UserRepository;
+import org.apache.tomcat.jni.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.nio.charset.Charset;
+import java.util.List;
 
 @Service
 public class UserServices {
 
+    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ChannelServices channelService;
+
 
     @Autowired
     public UserServices(UserRepository userRepository){
@@ -23,4 +34,14 @@ public class UserServices {
     public Iterable<ChatUsers> getUsers() {
         return this.userRepository.findAll();
     }
+
+    public List<ChatUsers> findAllByChannel(Long id, Pageable pageable) {
+        return userRepository.findAllByChannels(channelService.findById(id), pageable);
+    }
+
+    public ChatUsers findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 }
+
+
