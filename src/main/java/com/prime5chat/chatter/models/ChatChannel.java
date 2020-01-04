@@ -1,27 +1,34 @@
 package com.prime5chat.chatter.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
+import java.util.Set;
+
 @Entity
+@Table(name = "chat_channel")
 public class ChatChannel {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(columnDefinition = "VARCHAR(60)")
+    @JsonProperty("channel_name")
     private String channelName;
-    private Long id;
-    private boolean isPrivate;
+
+    @JsonProperty("public_channel")
+    private Boolean publicChannel;
+
+    @OneToMany(mappedBy = "chatChannel")
+    @JsonIgnore
+    private Set<UsersChannels> usersChannels;
 
     public ChatChannel() {
     }
-    public ChatChannel(String channelName, Long id) {
+    public ChatChannel(String channelName) {
         this.channelName = channelName;
-        this.id = id;
     }
-
-//    @OneToMany
-//    List<UserServices> allowedUsers;
-
-    public boolean isPrivate(){return true;}
 
     public String getCHANNELNAME() {
         return channelName;
@@ -31,8 +38,19 @@ public class ChatChannel {
         this.channelName = channelName;
     }
 
+    public Boolean getPublicChannel() {
+        return publicChannel;
+    }
 
-    public  Long  getId() {
-        return id;
+    public void setPublicChannel(Boolean publicChannel) {
+        this.publicChannel = publicChannel;
+    }
+
+    public Set<UsersChannels> getUsersChannels() {
+        return usersChannels;
+    }
+
+    public void setUsersChannels(Set<UsersChannels> usersChannels) {
+        this.usersChannels = usersChannels;
     }
 }

@@ -1,6 +1,9 @@
 package com.prime5chat.chatter.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "chatusers")
@@ -16,8 +19,8 @@ public class ChatUsers {
     private String LAST_NAME;
     private String EMAIL;
 
-//    @ManyToMany
-//    private List<Group> groups;
+    @OneToMany(mappedBy = "chatUser")
+    private Set<UsersChannels> usersChannels;
 
 
     public String getUSER_NAME() {
@@ -58,5 +61,13 @@ public class ChatUsers {
 
     public void setEMAIL(String EMAIL) {
         this.EMAIL = EMAIL;
+    }
+
+    public Set<UsersChannels> getUsersChannels() {
+        return usersChannels;
+    }
+
+    public void setUsersChannels(Set<UsersChannels> usersChannels) {
+        this.usersChannels = usersChannels;
     }
 }

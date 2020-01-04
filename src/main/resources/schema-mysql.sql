@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS ChatMessages(
 );
 
 
-
+/*
 -- O IS FALSE AND 1 IS TRUE IN MYSQL
 
 

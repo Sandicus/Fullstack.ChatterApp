@@ -25,16 +25,12 @@ public class UserController {
 
     @MessageMapping("/chat.createUser")
     public ChatMessages createUser(@Payload ChatMessages chatMessages) {
-        System.out.println("-----------------------------------");
-        System.out.println(chatMessages.getUSER_NAME());
-        System.out.println(chatMessages.getMESSAGE_TYPE());
-        System.out.println("-----------------------------------");
         return chatMessages;
     }
 
     @PostMapping(path = "/users")
     public ResponseEntity<?> createUser(@RequestBody ChatUsers user){
-        return new ResponseEntity<>(this.userServices.createUser(user), HttpStatus.CREATED);
+        return new ResponseEntity<>(this .userServices.createUser(user), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/users")

@@ -28,11 +28,7 @@ public class MessageController {
 
     @MessageMapping("/chat.send")
     @SendTo("/topic/public")
-     public ChatMessages sendMessage(@Payload ChatMessages chatMessages){
-        System.out.println("SENDMESSAGE METHOD HAS BEEN CALLED");
-        System.out.println(chatMessages.getUSER_NAME());
-        System.out.println(chatMessages.getMESSAGE_TYPE());
-        System.out.println(chatMessages.getMESSAGE());
+     public ChatMessages sendMessage(@Payload ChatMessages chatMessages) {
         messageServices.saveMessage(chatMessages);
         return chatMessages;
     }

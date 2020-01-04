@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ChannelRepository extends JpaRepository<ChatChannel, Long> {
+public interface GroupRepository extends JpaRepository<ChatChannel, String> {
 
 
     ChatChannel findByChannelName (String channelName);
