@@ -161,7 +161,6 @@ function onMessageReceived(payload) {
 function getPublicChannels(payload) {
 
     var channelArray = JSON.parse(payload.body);
-
     for(var i = 0; i < channelArray.length; i++) {
         var channel = channelArray[i];
         var channelElement = document.createElement('li');
@@ -175,18 +174,21 @@ function getPublicChannels(payload) {
 }
 
 function goToChannel(payload) {
-    var newChannel = JSON.parse(payload.body);
-    channel = newChannel.channel_name;
-    while(messageArea.firstChild) {
-        messageArea.removeChild(messageArea.firstChild);
-    }
-    stompClient.subscribe("/format/getMessages", getChannelMessages);
-    stompClient.send("/app/chat.getMessages", {}, JSON.stringify(payload));
+    testMessage("Going to next channel");
+    //var newChannel = JSON.parse(payload.body);
+    // channel = newChannel.channel_name;
+    // while(messageArea.firstChild) {
+    //     messageArea.removeChild(messageArea.firstChild);
+    // }
+    // stompClient.subscribe("/format/getMessages", getChannelMessages);
+    // stompClient.send("/app/chat.getMessages", {}, JSON.stringify(payload));
+    // stompClient.unsubscribe("/format/getMessages");
+    // for(var i = 0; i< channelMessages.length; i++){
+    //     onMessageReceived(channelMessages[i]);
+    // }
 }
 
-function getChannelMessages(payload) {
-    
-}
+function getChannelMessages(payload) {channelMessages = JSON(payload.body);}
 
 function getAvatarColor(messageSender) {
     var hash = 0;
@@ -201,3 +203,13 @@ function getAvatarColor(messageSender) {
 usernameForm.addEventListener('submit', connect, true);
 newAccountPage.addEventListener('submit', createAccount, true);
 messageForm.addEventListener('submit', send, true);
+
+function testMessage(text){
+    var chatMessage = {
+        sender: username,
+        content: text,
+        type: 'CHAT',
+        channel_name: channel
+    };
+    stompClient.send("/app/chat.send", {}, JSON.stringify(chatMessage));
+}
