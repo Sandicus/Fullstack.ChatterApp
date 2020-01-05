@@ -161,34 +161,42 @@ function onMessageReceived(payload) {
 function getPublicChannels(payload) {
 
     var channelArray = JSON.parse(payload.body);
+
     for(var i = 0; i < channelArray.length; i++) {
         var channel = channelArray[i];
         var channelElement = document.createElement('li');
         var linkElement = document.createElement('button');
         linkElement.innerHTML = channel.channel_name;
-        linkElement.onclick = goToChannel(channelArray[i]);
+        linkElement.id = channel.channel_name;
+        linkElement.onclick = function(){goToChannel(channel.channel_name)};
         channelElement.appendChild(linkElement);
         channelArea.appendChild(channelElement);
         channelArea.scrollTop = channelArea.scrollHeight;
     }
 }
 
-function goToChannel(payload) {
-    testMessage("Going to next channel");
-    //var newChannel = JSON.parse(payload.body);
-    // channel = newChannel.channel_name;
-    // while(messageArea.firstChild) {
-    //     messageArea.removeChild(messageArea.firstChild);
-    // }
-    // stompClient.subscribe("/format/getMessages", getChannelMessages);
-    // stompClient.send("/app/chat.getMessages", {}, JSON.stringify(payload));
-    // stompClient.unsubscribe("/format/getMessages");
-    // for(var i = 0; i< channelMessages.length; i++){
-    //     onMessageReceived(channelMessages[i]);
-    // }
+function goToChannel(channelName) {
+    testMessage("Going to another channel");
+    channel = channelName;
+    while(messageArea.firstChild) {
+        messageArea.removeChild(messageArea.firstChild);
+    }
+    stompClient.subscribe("/format/getMessages", getChannelMessages);
+    stompClient.send("/app/chat.getMessages", {}, JSON.stringify(channelName));
+    stompClient.unsubscribe("/format/getMessages");
+    testMessage("We've moved to another channel");
 }
 
-function getChannelMessages(payload) {channelMessages = JSON(payload.body);}
+function getChannelMessages(payload) {
+    testMessage("Getting channel messages");
+    channelMessages = JSON.parse(payload.body);
+    for(var i = 0; i< channelMessages.length; i++) {
+        var currentMessage = channelMessages[i];
+        retrievingMessages(currentMessage);
+    }
+    testMessage("channel messages retrieved");
+
+}
 
 function getAvatarColor(messageSender) {
     var hash = 0;
@@ -205,11 +213,84 @@ newAccountPage.addEventListener('submit', createAccount, true);
 messageForm.addEventListener('submit', send, true);
 
 function testMessage(text){
-    var chatMessage = {
+    var message = {
         sender: username,
         content: text,
         type: 'CHAT',
         channel_name: channel
     };
-    stompClient.send("/app/chat.send", {}, JSON.stringify(chatMessage));
+    var messageElement = document.createElement('li');
+
+    messageElement.classList.add('chat-message');
+
+    var avatarElement = document.createElement('i');
+    var avatarText = document.createTextNode(message.sender[0]);
+    avatarElement.appendChild(avatarText);
+    avatarElement.style['background-color'] = getAvatarColor(message.sender);
+
+    messageElement.appendChild(avatarElement);
+
+    var usernameElement = document.createElement('span');
+    var usernameText = document.createTextNode(message.sender);
+    usernameElement.appendChild(usernameText);
+    messageElement.appendChild(usernameElement);
+
+
+
+    var timestamp = document.createElement('time');
+    timestamp.innerText = message.timestamp;
+    messageElement.appendChild(timestamp);
+
+    var textElement = document.createElement('p');
+    var messageText = document.createTextNode(message.content);
+    textElement.appendChild(messageText);
+
+    messageElement.appendChild(textElement);
+
+    messageArea.appendChild(messageElement);
+    messageArea.scrollTop = messageArea.scrollHeight;
+
+}
+
+function retrievingMessages (message) {
+    console.log(message);
+    var messageElement = document.createElement('li');
+
+    if(message.type === 'JOIN') {
+        messageElement.classList.add('event-message');
+        message.content = message.sender + ' joined!';
+    } else if (message.type === 'LEAVE') {
+        messageElement.classList.add('event-message');
+        message.content = message.sender + ' left!';
+    } else {
+        messageElement.classList.add('chat-message');
+
+        var avatarElement = document.createElement('i');
+        var avatarText = document.createTextNode(message.sender[0]);
+        avatarElement.appendChild(avatarText);
+        avatarElement.style['background-color'] = getAvatarColor(message.sender);
+
+        messageElement.appendChild(avatarElement);
+
+        var usernameElement = document.createElement('span');
+        var usernameText = document.createTextNode(message.sender);
+        usernameElement.appendChild(usernameText);
+        messageElement.appendChild(usernameElement);
+
+
+
+        var timestamp = document.createElement('time');
+        timestamp.innerText = message.timestamp;
+        messageElement.appendChild(timestamp);
+
+    }
+
+    var textElement = document.createElement('p');
+    var messageText = document.createTextNode(message.content);
+    textElement.appendChild(messageText);
+
+    messageElement.appendChild(textElement);
+
+    messageArea.appendChild(messageElement);
+    messageArea.scrollTop = messageArea.scrollHeight;
 }

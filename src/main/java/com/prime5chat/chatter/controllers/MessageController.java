@@ -11,9 +11,12 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 public class MessageController {
+
+    private static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     private MessageServices messageServices;
 
@@ -44,7 +47,10 @@ public class MessageController {
 
     @MessageMapping("/chat.getMessages")
     @SendTo("/format/getMessages")
-    public List<ChatMessages> ChatMessages(@Payload ChatChannel channel){
-        return messageServices.getMessagesByChannel(channel.getCHANNEL_NAME());
+    public List<ChatMessages> ChatMessages(@Payload String channelName) {
+        logger.info("--------------|");
+        logger.info(channelName);
+        logger.info("|--------------");
+        return messageServices.getMessagesByChannel(channelName);
     }
 }
