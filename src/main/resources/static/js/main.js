@@ -44,6 +44,8 @@ function onConnected() {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
     stompClient.subscribe('/format/channels', getPublicChannels);
+    stompClient.subscribe("/format/getMessages", getChannelMessages);
+
     channel = 'public';
     // Tell your username to the server
     stompClient.send("/app/chat.createUser",
@@ -168,33 +170,34 @@ function getPublicChannels(payload) {
         var linkElement = document.createElement('button');
         linkElement.innerHTML = channel.channel_name;
         linkElement.id = channel.channel_name;
-        linkElement.onclick = function(){goToChannel(channel.channel_name)};
+        linkElement.onclick = function(){goToChannel(this.id)};
         channelElement.appendChild(linkElement);
         channelArea.appendChild(channelElement);
         channelArea.scrollTop = channelArea.scrollHeight;
     }
+
 }
 
 function goToChannel(channelName) {
-    testMessage("Going to another channel");
+    console.log("GO TO CHANNEL IS BEING CALLED");
+    //testMessage("Going to another channel");
     channel = channelName;
     while(messageArea.firstChild) {
         messageArea.removeChild(messageArea.firstChild);
     }
-    stompClient.subscribe("/format/getMessages", getChannelMessages);
     stompClient.send("/app/chat.getMessages", {}, JSON.stringify(channelName));
-    stompClient.unsubscribe("/format/getMessages");
-    testMessage("We've moved to another channel");
+    //testMessage("We've moved to another channel");
 }
 
 function getChannelMessages(payload) {
-    testMessage("Getting channel messages");
+    //testMessage("Getting channel messages");
     channelMessages = JSON.parse(payload.body);
-    for(var i = 0; i< channelMessages.length; i++) {
+    console.log(channelMessages.length);
+    for(var i = 0; i < channelMessages.length; i++) {
         var currentMessage = channelMessages[i];
         retrievingMessages(currentMessage);
     }
-    testMessage("channel messages retrieved");
+    //testMessage("channel messages retrieved");
 
 }
 
@@ -253,7 +256,8 @@ function testMessage(text){
 }
 
 function retrievingMessages (message) {
-    console.log(message);
+    // console.log(message);
+    console.log("RETRIEVING MESSAGES IN JAVASCRIPT");
     var messageElement = document.createElement('li');
 
     if(message.type === 'JOIN') {

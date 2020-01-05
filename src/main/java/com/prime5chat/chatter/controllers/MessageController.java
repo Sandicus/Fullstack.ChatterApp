@@ -1,6 +1,5 @@
 package com.prime5chat.chatter.controllers;
 
-import com.prime5chat.chatter.models.ChatChannel;
 import com.prime5chat.chatter.models.ChatMessages;
 import com.prime5chat.chatter.services.MessageServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +48,9 @@ public class MessageController {
     @SendTo("/format/getMessages")
     public List<ChatMessages> ChatMessages(@Payload String channelName) {
         logger.info("--------------|");
-        logger.info(channelName);
+        logger.info(channelName.substring(1, channelName.length() - 1));
+        //System.out.println(messageServices.getMessagesByChannel(channelName.substring(1, channelName.length() - 1)).size());
         logger.info("|--------------");
-        return messageServices.getMessagesByChannel(channelName);
+        return messageServices.getMessagesByChannel(channelName.substring(1, channelName.length() - 1));
     }
 }
