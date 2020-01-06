@@ -16,17 +16,16 @@ import java.util.logging.Logger;
 public class MessageController {
 
     private static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
     private MessageServices messageServices;
 
     @Autowired
-    public MessageController(MessageServices messageServices){
+    public MessageController(MessageServices messageServices) {
         this.messageServices = messageServices;
     }
 
     @MessageMapping("/chat.register")
     @SendTo("/topic/public")
-    public ChatMessages register(@Payload ChatMessages chatMessages, SimpMessageHeaderAccessor headerAccessor){
+    public ChatMessages register(@Payload ChatMessages chatMessages, SimpMessageHeaderAccessor headerAccessor) {
         headerAccessor.getSessionAttributes().put("username", chatMessages.getUSER_NAME());
         return chatMessages;
     }

@@ -22,7 +22,7 @@ var colors = [
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
-// For login and creating an account ------------------------------------------------------------------
+// For login and creating an account -----------------------------------------------------------------------------------
 
 function connect(event) {
     username = document.querySelector('#name').value.trim();
@@ -98,7 +98,7 @@ function onError(error) {
     connectingElement.style.color = 'red';
 }
 
-// For sending messages -------------------------------------------------------------------------------
+// For sending messages ------------------------------------------------------------------------------------------------
 
 function send(event) {
     var messageContent = messageInput.value.trim();
@@ -172,7 +172,7 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-// For listing and changing channels ------------------------------------------------------------------
+// For listing and changing channels -----------------------------------------------------------------------------------
 
 function getPublicChannels(payload) {
 
@@ -193,7 +193,7 @@ function getPublicChannels(payload) {
 }
 
 function goToChannel(channelName) {
-    console.log("GO TO CHANNEL IS BEING CALLED");
+    // console.log("GO TO CHANNEL IS BEING CALLED");
     channel = channelName;
     while(messageArea.firstChild) {
         messageArea.removeChild(messageArea.firstChild);
@@ -203,7 +203,7 @@ function goToChannel(channelName) {
 
 function getChannelMessages(payload) {
     channelMessages = JSON.parse(payload.body);
-    console.log(channelMessages.length);
+    // console.log(channelMessages.length);
     for(var i = channelMessages.length - 1; i >= 0; i--) {
         var currentMessage = channelMessages[i];
         retrievingMessages(currentMessage);
@@ -212,7 +212,7 @@ function getChannelMessages(payload) {
 
 function retrievingMessages (message) {
     // console.log(message);
-    console.log("RETRIEVING MESSAGES IN JAVASCRIPT");
+    // console.log("RETRIEVING MESSAGES IN JAVASCRIPT");
     var messageElement = document.createElement('li');
 
     if(message.type === 'JOIN') {
@@ -254,7 +254,7 @@ function retrievingMessages (message) {
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
-// Event listeners  -----------------------------------------------------------------------------------
+// Event listeners  ----------------------------------------------------------------------------------------------------
 
 usernameForm.addEventListener('submit', connect, true);
 newAccountPage.addEventListener('submit', createAccount, true);
