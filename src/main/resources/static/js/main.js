@@ -46,7 +46,7 @@ function onConnected() {
     stompClient.subscribe('/format/channels', getPublicChannels);
     stompClient.subscribe("/format/getMessages", getChannelMessages);
 
-    channel = 'public';
+    channel = 'Public Channel 1';
     // Tell your username to the server
     stompClient.send("/app/chat.createUser",
         {},
@@ -59,6 +59,7 @@ function onConnected() {
 
     connectingElement.classList.add('hidden');
     stompClient.send("/app/chat.publicchannels");
+    stompClient.send("/app/chat.getMessages", {}, JSON.stringify(channel));
 }
 
 function goToAccountCreation(event) {
@@ -193,7 +194,7 @@ function getChannelMessages(payload) {
     //testMessage("Getting channel messages");
     channelMessages = JSON.parse(payload.body);
     console.log(channelMessages.length);
-    for(var i = 0; i < channelMessages.length; i++) {
+    for(var i = channelMessages.length - 1; i >= 0; i--) {
         var currentMessage = channelMessages[i];
         retrievingMessages(currentMessage);
     }
@@ -209,11 +210,6 @@ function getAvatarColor(messageSender) {
     var index = Math.abs(hash % colors.length);
     return colors[index];
 }
-
-
-usernameForm.addEventListener('submit', connect, true);
-newAccountPage.addEventListener('submit', createAccount, true);
-messageForm.addEventListener('submit', send, true);
 
 function testMessage(text){
     var message = {
@@ -298,3 +294,8 @@ function retrievingMessages (message) {
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
 }
+
+usernameForm.addEventListener('submit', connect, true);
+newAccountPage.addEventListener('submit', createAccount, true);
+messageForm.addEventListener('submit', send, true);
+

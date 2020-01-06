@@ -47,10 +47,9 @@ public class MessageController {
     @MessageMapping("/chat.getMessages")
     @SendTo("/format/getMessages")
     public List<ChatMessages> ChatMessages(@Payload String channelName) {
-        logger.info("--------------|");
-        logger.info(channelName.substring(1, channelName.length() - 1));
-        //System.out.println(messageServices.getMessagesByChannel(channelName.substring(1, channelName.length() - 1)).size());
-        logger.info("|--------------");
+//        logger.info("--------------|");
+//        logger.info(channelName.substring(1, channelName.length() - 1));
+//        logger.info("|--------------");
         return messageServices.getMessagesByChannel(channelName.substring(1, channelName.length() - 1));
     }
 }
