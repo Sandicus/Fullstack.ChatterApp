@@ -22,6 +22,8 @@ var colors = [
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
+// For login and creating an account ------------------------------------------------------------------
+
 function connect(event) {
     username = document.querySelector('#name').value.trim();
     password = document.querySelector('#password').value;
@@ -96,6 +98,7 @@ function onError(error) {
     connectingElement.style.color = 'red';
 }
 
+// For sending messages -------------------------------------------------------------------------------
 
 function send(event) {
     var messageContent = messageInput.value.trim();
@@ -113,7 +116,6 @@ function send(event) {
     }
     event.preventDefault();
 }
-
 
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
@@ -161,6 +163,17 @@ function onMessageReceived(payload) {
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
+function getAvatarColor(messageSender) {
+    var hash = 0;
+    for (var i = 0; i < messageSender.length; i++) {
+        hash = 31 * hash + messageSender.charCodeAt(i);
+    }
+    var index = Math.abs(hash % colors.length);
+    return colors[index];
+}
+
+// For listing and changing channels ------------------------------------------------------------------
+
 function getPublicChannels(payload) {
 
     var channelArray = JSON.parse(payload.body);
@@ -181,74 +194,20 @@ function getPublicChannels(payload) {
 
 function goToChannel(channelName) {
     console.log("GO TO CHANNEL IS BEING CALLED");
-    //testMessage("Going to another channel");
     channel = channelName;
     while(messageArea.firstChild) {
         messageArea.removeChild(messageArea.firstChild);
     }
     stompClient.send("/app/chat.getMessages", {}, JSON.stringify(channelName));
-    //testMessage("We've moved to another channel");
 }
 
 function getChannelMessages(payload) {
-    //testMessage("Getting channel messages");
     channelMessages = JSON.parse(payload.body);
     console.log(channelMessages.length);
     for(var i = channelMessages.length - 1; i >= 0; i--) {
         var currentMessage = channelMessages[i];
         retrievingMessages(currentMessage);
     }
-    //testMessage("channel messages retrieved");
-
-}
-
-function getAvatarColor(messageSender) {
-    var hash = 0;
-    for (var i = 0; i < messageSender.length; i++) {
-        hash = 31 * hash + messageSender.charCodeAt(i);
-    }
-    var index = Math.abs(hash % colors.length);
-    return colors[index];
-}
-
-function testMessage(text){
-    var message = {
-        sender: username,
-        content: text,
-        type: 'CHAT',
-        channel_name: channel
-    };
-    var messageElement = document.createElement('li');
-
-    messageElement.classList.add('chat-message');
-
-    var avatarElement = document.createElement('i');
-    var avatarText = document.createTextNode(message.sender[0]);
-    avatarElement.appendChild(avatarText);
-    avatarElement.style['background-color'] = getAvatarColor(message.sender);
-
-    messageElement.appendChild(avatarElement);
-
-    var usernameElement = document.createElement('span');
-    var usernameText = document.createTextNode(message.sender);
-    usernameElement.appendChild(usernameText);
-    messageElement.appendChild(usernameElement);
-
-
-
-    var timestamp = document.createElement('time');
-    timestamp.innerText = message.timestamp;
-    messageElement.appendChild(timestamp);
-
-    var textElement = document.createElement('p');
-    var messageText = document.createTextNode(message.content);
-    textElement.appendChild(messageText);
-
-    messageElement.appendChild(textElement);
-
-    messageArea.appendChild(messageElement);
-    messageArea.scrollTop = messageArea.scrollHeight;
-
 }
 
 function retrievingMessages (message) {
@@ -295,7 +254,8 @@ function retrievingMessages (message) {
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
+// Event listeners  -----------------------------------------------------------------------------------
+
 usernameForm.addEventListener('submit', connect, true);
 newAccountPage.addEventListener('submit', createAccount, true);
 messageForm.addEventListener('submit', send, true);
-
