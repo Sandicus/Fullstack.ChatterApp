@@ -48,6 +48,7 @@ function onConnected() {
     stompClient.subscribe('/format/channels', getPublicChannels);
     stompClient.subscribe("/format/getMessages", getChannelMessages);
 
+
     channel = 'Public Channel 1';
     // Tell your username to the server
     stompClient.send("/app/chat.createUser",
@@ -203,7 +204,7 @@ function goToChannel(channelName) {
 
 function getChannelMessages(payload) {
     channelMessages = JSON.parse(payload.body);
-    // console.log(channelMessages.length);
+    console.log(channelMessages.length);
     for(var i = channelMessages.length - 1; i >= 0; i--) {
         var currentMessage = channelMessages[i];
         retrievingMessages(currentMessage);
@@ -211,7 +212,7 @@ function getChannelMessages(payload) {
 }
 
 function retrievingMessages (message) {
-    // console.log(message);
+    console.log(message);
     // console.log("RETRIEVING MESSAGES IN JAVASCRIPT");
     var messageElement = document.createElement('li');
 
