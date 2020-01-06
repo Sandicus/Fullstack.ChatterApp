@@ -15,11 +15,14 @@ var stompClient = null;
 var username = null;
 var password = null;
 var channel = null;
+var channelMessages = null;
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
+
+// For login and creating an account -----------------------------------------------------------------------------------
 
 function connect(event) {
     username = document.querySelector('#name').value.trim();
@@ -42,8 +45,11 @@ function connect(event) {
 function onConnected() {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
-    stompClient.subscribe('/interface/channels', getPublicChannels);
-    channel = 'public';
+    stompClient.subscribe('/format/channels', getPublicChannels);
+    stompClient.subscribe('/format/getMessages', getChannelMessages);
+
+
+    channel = 'Public Channel 1';
     // Tell your username to the server
     stompClient.send("/app/chat.createUser",
         {},
@@ -56,6 +62,7 @@ function onConnected() {
 
     connectingElement.classList.add('hidden');
     stompClient.send("/app/chat.publicchannels");
+    stompClient.send("/app/chat.getMessages", {}, JSON.stringify(channel));
 }
 
 function goToAccountCreation(event) {
@@ -92,6 +99,7 @@ function onError(error) {
     connectingElement.style.color = 'red';
 }
 
+// For sending messages ------------------------------------------------------------------------------------------------
 
 function send(event) {
     var messageContent = messageInput.value.trim();
@@ -109,7 +117,6 @@ function send(event) {
     }
     event.preventDefault();
 }
-
 
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
@@ -157,26 +164,6 @@ function onMessageReceived(payload) {
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
-function getPublicChannels(payload) {
-
-    var channelArray = JSON.parse(payload.body);
-
-    for(var i = 0; i < channelArray.length; i++) {
-        var channel = channelArray[i];
-        var channelElement = document.createElement('li');
-        var linkElement = document.createElement('button');
-        linkElement.innerHTML = channel.channel_name;
-        linkElement.onclick = goToChannel(channelArray[i]);
-        channelElement.appendChild(linkElement);
-        channelArea.appendChild(channelElement);
-        channelArea.scrollTop = channelArea.scrollHeight;
-    }
-}
-
-function goToChannel(payload) {
-
-}
-
 function getAvatarColor(messageSender) {
     var hash = 0;
     for (var i = 0; i < messageSender.length; i++) {
@@ -186,6 +173,89 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
+// For listing and changing channels -----------------------------------------------------------------------------------
+
+function getPublicChannels(payload) {
+
+    var channelArray = JSON.parse(payload.body);
+
+    for(var i = 0; i < channelArray.length; i++) {
+        var channel = channelArray[i];
+        var channelElement = document.createElement('li');
+        var linkElement = document.createElement('button');
+        linkElement.innerHTML = channel.channel_name;
+        linkElement.id = channel.channel_name;
+        linkElement.onclick = function(){goToChannel(this.id)};
+        channelElement.appendChild(linkElement);
+        channelArea.appendChild(channelElement);
+        channelArea.scrollTop = channelArea.scrollHeight;
+    }
+
+}
+
+function goToChannel(channelName) {
+    // console.log("GO TO CHANNEL IS BEING CALLED");
+    channel = channelName;
+    while(messageArea.firstChild) {
+        messageArea.removeChild(messageArea.firstChild);
+    }
+    stompClient.send("/app/chat.getMessages", {}, JSON.stringify(channelName));
+}
+
+function getChannelMessages(payload) {
+    channelMessages = JSON.parse(payload.body);
+    console.log(channelMessages.length);
+    for(var i = channelMessages.length - 1; i >= 0; i--) {
+        var currentMessage = channelMessages[i];
+        retrievingMessages(currentMessage);
+    }
+}
+
+function retrievingMessages (message) {
+    console.log(message);
+    // console.log("RETRIEVING MESSAGES IN JAVASCRIPT");
+    var messageElement = document.createElement('li');
+
+    if(message.type === 'JOIN') {
+        messageElement.classList.add('event-message');
+        message.content = message.sender + ' joined!';
+    } else if (message.type === 'LEAVE') {
+        messageElement.classList.add('event-message');
+        message.content = message.sender + ' left!';
+    } else {
+        messageElement.classList.add('chat-message');
+
+        var avatarElement = document.createElement('i');
+        var avatarText = document.createTextNode(message.sender[0]);
+        avatarElement.appendChild(avatarText);
+        avatarElement.style['background-color'] = getAvatarColor(message.sender);
+
+        messageElement.appendChild(avatarElement);
+
+        var usernameElement = document.createElement('span');
+        var usernameText = document.createTextNode(message.sender);
+        usernameElement.appendChild(usernameText);
+        messageElement.appendChild(usernameElement);
+
+
+
+        var timestamp = document.createElement('time');
+        timestamp.innerText = message.timestamp;
+        messageElement.appendChild(timestamp);
+
+    }
+
+    var textElement = document.createElement('p');
+    var messageText = document.createTextNode(message.content);
+    textElement.appendChild(messageText);
+
+    messageElement.appendChild(textElement);
+
+    messageArea.appendChild(messageElement);
+    messageArea.scrollTop = messageArea.scrollHeight;
+}
+
+// Event listeners  ----------------------------------------------------------------------------------------------------
 
 usernameForm.addEventListener('submit', connect, true);
 newAccountPage.addEventListener('submit', createAccount, true);

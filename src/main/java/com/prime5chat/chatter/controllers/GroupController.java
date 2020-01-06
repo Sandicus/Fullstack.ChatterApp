@@ -28,11 +28,8 @@ public class GroupController {
     }
 
     @MessageMapping("/chat.publicchannels")
-    @SendTo("/interface/channels")
+    @SendTo("/format/channels")
     public List<ChatChannel> getPublicChannels() {
-        System.out.println("--------------------");
-        System.out.println("GETTING PUBLIC CHANNELS");
-        System.out.println("--------------------");
         return groupServices.getPublicChannels();
     }
 }

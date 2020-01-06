@@ -9,19 +9,23 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+import java.util.logging.Logger;
+
 @Controller
 public class MessageController {
 
+    private static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private MessageServices messageServices;
 
     @Autowired
-    public MessageController(MessageServices messageServices){
+    public MessageController(MessageServices messageServices) {
         this.messageServices = messageServices;
     }
 
     @MessageMapping("/chat.register")
     @SendTo("/topic/public")
-    public ChatMessages register(@Payload ChatMessages chatMessages, SimpMessageHeaderAccessor headerAccessor){
+    public ChatMessages register(@Payload ChatMessages chatMessages, SimpMessageHeaderAccessor headerAccessor) {
         headerAccessor.getSessionAttributes().put("username", chatMessages.getUSER_NAME());
         return chatMessages;
     }
@@ -37,5 +41,14 @@ public class MessageController {
     @SendTo("/topic/public")
     public ChatMessages logout(@Payload ChatMessages chatMessages) {
         return chatMessages;
+    }
+
+    @MessageMapping("/chat.getMessages")
+    @SendTo("/format/getMessages")
+    public List<ChatMessages> ChatMessages(@Payload String channelName) {
+        logger.info("--------------|");
+        logger.info(channelName.substring(1, channelName.length() - 1));
+        logger.info("|--------------");
+        return messageServices.getMessagesByChannel(channelName.substring(1, channelName.length() - 1));
     }
 }
