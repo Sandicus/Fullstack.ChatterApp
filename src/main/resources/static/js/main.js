@@ -45,7 +45,7 @@ function connect(event) {
 function onConnected() {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
-    stompClient.subscribe('/format/channels', getPublicChannels);
+    stompClient.subscribe('/sidebar/channels', getPublicChannels);
     stompClient.subscribe('/format/getMessages', getChannelMessages);
 
 

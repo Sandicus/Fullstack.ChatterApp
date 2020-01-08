@@ -19,14 +19,17 @@ public class GroupController {
         this.groupServices = groupServices;
     }
 
-
+    @MessageMapping("/chat.createChannel")
+    @SendTo("/sidebar/new_channel")
     public ChatChannel createChannel(ChatChannel chatChannel) {
         return this.groupServices.createChannel(chatChannel);
     }
 
     @MessageMapping("/chat.publicchannels")
-    @SendTo("/format/channels")
+    @SendTo("/sidebar/channels")
     public List<ChatChannel> getPublicChannels() {
         return groupServices.getPublicChannels();
     }
+
+
 }
