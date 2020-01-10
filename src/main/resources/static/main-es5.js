@@ -1511,7 +1511,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       function WebSocketServiceService() {
         _classCallCheck(this, WebSocketServiceService);
 
-        this.serverUrl = 'http://localhost:8080/prime5chatter';
+        this.serverUrl = 'https://primechatter5.cfapps.io/prime5chatter';
       }
 
       _createClass(WebSocketServiceService, [{

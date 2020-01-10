@@ -854,7 +854,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let WebSocketServiceService = class WebSocketServiceService {
     constructor() {
-        this.serverUrl = 'http://localhost:8080/prime5chatter';
+        this.serverUrl = 'https://primechatter5.cfapps.io/prime5chatter';
     }
     getClient() {
         let socket = new sockjs_client__WEBPACK_IMPORTED_MODULE_3__(this.serverUrl);
