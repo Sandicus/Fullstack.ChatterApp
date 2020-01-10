@@ -23,12 +23,12 @@ public class MessageController {
         this.messageServices = messageServices;
     }
 
-    @MessageMapping("/chat.register")
-    @SendTo("/topic/public")
-    public ChatMessages register(@Payload ChatMessages chatMessages, SimpMessageHeaderAccessor headerAccessor) {
-        headerAccessor.getSessionAttributes().put("username", chatMessages.getUSER_NAME());
-        return chatMessages;
-    }
+//    @MessageMapping("/chat.register")
+//    @SendTo("/topic/public")
+//    public ChatMessages register(@Payload ChatMessages chatMessages, SimpMessageHeaderAccessor headerAccessor) {
+//        headerAccessor.getSessionAttributes().put("username", chatMessages.getUSER_NAME());
+//        return chatMessages;
+//    }
 
     @MessageMapping("/chat.send")
     @SendTo("/topic/public")

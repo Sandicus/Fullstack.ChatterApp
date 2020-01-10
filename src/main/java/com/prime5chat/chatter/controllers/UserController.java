@@ -42,14 +42,20 @@ public class UserController {
         return userServices.checkLoginInfo(user);
     }
 
-    @PostMapping(path = "/users")
-    public ResponseEntity<?> createUser(@RequestBody ChatUsers user){
-        return new ResponseEntity<>(this .userServices.createUser(user), HttpStatus.CREATED);
-    }
+//    @PostMapping(path = "/users")
+//    public ResponseEntity<?> createUser(@RequestBody ChatUsers user){
+//        return new ResponseEntity<>(this .userServices.createUser(user), HttpStatus.CREATED);
+//    }
 
     @GetMapping(path = "/users")
     public ResponseEntity<Iterable<ChatUsers>> getUsers(){
         return new ResponseEntity<>(this.userServices.getUsers(), HttpStatus.OK);
+    }
+
+    @MessageMapping("/chat.register")
+    @SendTo("/connect/createuser")
+    public ChatUsers createUser(@Payload ChatUsers chatUsers){
+        return this.userServices.createUser(chatUsers);
     }
 
 }
