@@ -7,13 +7,15 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "chat_users")
+@Table(name = "chatusers")
 public class ChatUsers {
 
     @Id
     @Column(columnDefinition = "VARCHAR(60)")
+    @JsonProperty("USER_NAME")
     private String USER_NAME;
 
+    @JsonProperty("USER_PWD")
     private String USER_PWD;
     private String FIRST_NAME;
     private String LAST_NAME;
@@ -22,7 +24,6 @@ public class ChatUsers {
     @OneToMany(mappedBy = "chatUser")
     @JsonIgnore
     private Set<UsersChannels> usersChannels;
-
 
     public String getUSER_NAME() {
         return USER_NAME;

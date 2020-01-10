@@ -8,9 +8,12 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 public class GroupController {
+
+    private static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     private GroupServices groupServices;
 
@@ -25,9 +28,10 @@ public class GroupController {
         return this.groupServices.createChannel(chatChannel);
     }
 
-    @MessageMapping("/chat.publicchannels")
+    @MessageMapping("/chat.channels")
     @SendTo("/sidebar/channels")
     public List<ChatChannel> getPublicChannels() {
+        logger.info("--------- getPublicChannels has been called ----------");
         return groupServices.getPublicChannels();
     }
 

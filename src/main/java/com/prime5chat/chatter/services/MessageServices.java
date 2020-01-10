@@ -21,7 +21,7 @@ public class MessageServices {
     public List<ChatMessages> getMessagesByChannel(String channel_name) {
         List<ChatMessages> results = new ArrayList<>();
         for(ChatMessages c : messageRepository.findAll()){
-            if(!c.getCHANNEL_NAME().equals(null) && c.getCHANNEL_NAME().equals(channel_name)) {
+            if(c.getCHANNEL_NAME() != null && c.getCHANNEL_NAME().equals(channel_name)) {
                 results.add(c);
             }
         }

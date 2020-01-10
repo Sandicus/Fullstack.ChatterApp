@@ -33,6 +33,9 @@ public class MessageController {
     @MessageMapping("/chat.send")
     @SendTo("/topic/public")
      public ChatMessages sendMessage(@Payload ChatMessages chatMessages) {
+        logger.info("------------------------------");
+        logger.info("---------sendMessage----------");
+        logger.info("------------------------------");
         messageServices.saveMessage(chatMessages);
         return chatMessages;
     }

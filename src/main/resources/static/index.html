@@ -1,100 +1,22 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Spring Boot WebSocket Chat Application | CalliCoder</title>
-    <link rel="stylesheet" href="./css/main.css" />
-</head>
-<body background="67937.jpg"
-      style="background-position: center; background-repeat: no-repeat; background-size: cover; height: 100vh;
+  <meta charset="utf-8">
+  <title>Angular8SpringbootWebsocket</title>
+  <base href="/">
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-    width: 100vw;
-
-    overflow: hidden;">
-<noscript>
-    <h2>Sorry! Your browser doesn't support Javascript</h2>
-</noscript>
-
-<div id="sidebar" class="hidden">
-    <div id="sidenav" class="sidenav">
-        <h2>Public Channels</h2>
-        <ul id="channellist">
-
-        </ul>
-        <h2>Private Channels</h2>
-        <ul id="privatechannellist">
-
-        </ul>
-    </div>
-</div>
-
-    <div id="username-page">
-        <div class="username-page-container">
-            <h1 class="title">Login</h1>
-            <form id="usernameForm" name="usernameForm">
-                <div class="form-group">
-                    <input type="text" id="name" placeholder="Username"
-                           autocomplete="off" class="form-control" />
-                    <input type="password" id="password" placeholder="Password"
-                           autocomplete="off" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="accent username-submit">Start
-                        Chatting</button>
-                    <button type = "button" onclick="goToAccountCreation()" class="accent username-submit">
-                        Create new account
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="create-account-page" class="hidden">
-        <div class="username-page-container">
-            <h1 class="title">Type your new username and password </h1>
-            <form id="createAccountForm" name="createAccountForm">
-                <div class="form-group">
-                    <input type="text" id="newUsername" placeholder="Username"
-                           autocomplete="off" class="form-control" />
-                    <input type="password" id="newPassword" placeholder="Password"
-                           autocomplete="off" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <button type="button" onclick="goToLogin()" class="accent username-submit">Go Back</button>
-                    <button type="submit" class="accent username-submit">Create User</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="chat-page" class="hidden">
-        <div class="chat-container">
-            <div class="chat-header">
-                <h2>Prime 5 Chatter</h2>
-            </div>
-            <div class="connecting">Connecting...</div>
-            <ul id="messageArea">
-
-            </ul>
-            <form id="messageForm" name="messageForm" nameForm="messageForm">
-                <div class="form-group">
-                    <div class="input-group clearfix">
-                        <input type="text" id="message" placeholder="Type a message..."
-                               autocomplete="off" class="form-control" />
-                        <button type="submit" class="primary">Send</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<script
-        src ="./js/main.js">
-</script>
-</body>
+  <script>
+    if (global === undefined) {
+      var global = window;
+    }
+  </script>
+<link rel="stylesheet" href="styles.d46fe944ffe717788438.css"></head>
+<body>
+  <app-root></app-root>
+<script src="runtime-es2015.edb2fcf2778e7bf1d426.js" type="module"></script><script src="runtime-es5.edb2fcf2778e7bf1d426.js" nomodule defer></script><script src="polyfills-es5.ef4b1e1fc703b3ff76e3.js" nomodule defer></script><script src="polyfills-es2015.2987770fde9daa1d8a2e.js" type="module"></script><script src="main-es2015.9a0a83c811106bed5e5d.js" type="module"></script><script src="main-es5.9a0a83c811106bed5e5d.js" nomodule defer></script></body>
 </html>
