@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: primechatter5
+  - name: 5primechatter
     memory: 2G
     instances: 1
     buildpack: java_buildpack
