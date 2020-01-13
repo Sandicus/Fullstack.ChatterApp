@@ -22,6 +22,14 @@ public class ChatChannel {
     @JsonIgnore
     private Set<UsersChannels> usersChannels;
 
+    public ChatChannel(){
+
+    }
+
+    public ChatChannel(String CHANNEL_NAME, Boolean publicChannel) {
+        this.CHANNEL_NAME = CHANNEL_NAME;
+        this.publicChannel = publicChannel;
+    }
 
     public String getCHANNEL_NAME() {
         return CHANNEL_NAME;

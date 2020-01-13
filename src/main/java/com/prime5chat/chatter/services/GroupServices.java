@@ -20,8 +20,8 @@ public class GroupServices {
         this.groupRepository = groupRepository;
     }
 
-    public void createChannel(ChatChannel chatChannel) {
-        this.groupRepository.save(chatChannel);
+    public ChatChannel createChannel(ChatChannel chatChannel) {
+        return this.groupRepository.save(chatChannel);
     }
 
     public void updateChannel(String name, ChatChannel newChannel) {
