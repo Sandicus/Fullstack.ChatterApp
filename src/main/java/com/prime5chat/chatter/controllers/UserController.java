@@ -35,17 +35,8 @@ public class UserController {
     @MessageMapping("/chat.login")
     @SendTo("/connect/login")
     public ChatUsers login(@Payload ChatUsers user) {
-        logger.info("/////////////login method has been called///////////");
-        logger.info("username is: " + user.getUSER_NAME());
-        logger.info("password is: " + user.getUSER_PWD());
-        logger.info("/////////////login method has been called///////////");
         return userServices.checkLoginInfo(user);
     }
-
-//    @PostMapping(path = "/users")
-//    public ResponseEntity<?> createUser(@RequestBody ChatUsers user){
-//        return new ResponseEntity<>(this .userServices.createUser(user), HttpStatus.CREATED);
-//    }
 
     @GetMapping(path = "/users")
     public ResponseEntity<Iterable<ChatUsers>> getUsers(){
